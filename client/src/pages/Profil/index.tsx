@@ -1,6 +1,11 @@
+import TopBar from "../../layout/TopBar";
+
 const Profil = () => {
     return(
-        <h1>Hello world</h1>
+        <>
+            <TopBar/>
+            <h1>Profil page</h1>
+        </>
     );
 };
 
