@@ -1,10 +1,11 @@
+import LeftSideBar from "../../layout/LeftSideBar";
 import TopBar from "../../layout/TopBar";
 
 const Profil = () => {
     return(
         <>
             <TopBar/>
-            <h1>Profil page</h1>
+            <LeftSideBar/>
         </>
     );
 };
