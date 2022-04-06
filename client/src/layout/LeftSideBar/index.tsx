@@ -9,9 +9,10 @@ const LeftSideBar = () => {
     const NavBar = styled.nav `
         background-color: #000000;
         height: 100vh;
-        width: 5.5vw;
+        width: 100px;
         position: fixed;
         left: 0;
+        top: 0;
         z-index: -1;
         display: flex;
         flex-direction: column;

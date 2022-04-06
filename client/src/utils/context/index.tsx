@@ -16,8 +16,6 @@ export const DataProvider = ({ children }: Props ): JSX.Element => {
         userPerformances: useFetch(`http://localhost:3000/user/${userId}/performance`),
     };
 
-    console.log(dataProvided);
-
     return(
         <DataContext.Provider value={dataProvided}>
             {children}
