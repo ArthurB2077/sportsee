@@ -40,15 +40,30 @@ const Text = ({ percentage }: any) => {
   );
 };
 
+const Para = () => {
+    return (
+      <text
+        x="50%"
+        y="65%"
+        dominantBaseline="central"
+        textAnchor="middle"
+        fontSize={"14px"}
+      >
+        de votre objectif
+      </text>
+    );
+  };
+
 const Pie = ({ percentage, colour }: any) => {
   const pct = cleanPercentage(percentage);
   return (
     <svg width={200} height={200}>
-      <g transform={`rotate(-90 ${"100 100"})`}>
+      <g transform={`rotate(-135 ${"100 100"})`}>
         <Circle colour="transparent" />
         <Circle colour={colour} pct={pct} />
       </g>
       <Text percentage={pct} />
+      <Para />
     </svg>
   );
 };

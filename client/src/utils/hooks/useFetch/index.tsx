@@ -18,7 +18,7 @@ export const useFetch = (url : string): unknown => {
                      }
             
                   });
-                const data: object = await response.json();
+                const { data } = await response.json();
                 setData(data);
             }
     
@@ -33,5 +33,5 @@ export const useFetch = (url : string): unknown => {
         })();
     }, [url]);
 
-    return {isLoading, data, error};
+    return { isLoading: isLoading, data: data, error: error };
 };

@@ -12,10 +12,6 @@ const Sessions = (props: Props): JSX.Element => {
     const SessionsContainer = styled.div `
         display: flex;
     `
-    const COLORS = [ '#FF0000','#ffffff'];
-
-
-    console.log(props.score)
 
     return(
         <SessionsContainer>
