@@ -6,8 +6,6 @@ interface Props {
 const Info = (props: Props): JSX.Element => {
     const { userName } = props;
 
-    // console.log("Info", userName);
-
     return (
         <>
             {userName &&

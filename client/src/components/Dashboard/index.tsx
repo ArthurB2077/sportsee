@@ -49,12 +49,6 @@ const Dashboard = (): JSX.Element => {
         )
     });
 
-    //console.log("userInfos", userInfos.data && userInfos.data);
-    // console.log("userActivity", Object.values(userActivity.data).length > 0 && userActivity);
-    // console.log("userSessions", Object.values(userSessions.data).length > 0 && userSessions);
-    console.log("userPerformances", userPerformances && userPerformances.data && userPerformances.data.data);
-
-
     const performanceKind = userPerformances && userPerformances.data && userPerformances.data.kind;
     const performances: Array<any> = userPerformances && userPerformances.data && userPerformances.data.data && userPerformances.data.data.length > 0 && userPerformances.data.data.map((item: any) => {
         return (
@@ -65,7 +59,6 @@ const Dashboard = (): JSX.Element => {
         );
     });
 
-    console.log("performances", performances);
     
     return (
         <DashboardContainer>

@@ -1,5 +1,6 @@
 import React, { createContext } from 'react';
 import { useFetch } from '../hooks/useFetch';
+import { DataProvided } from './../../types';
 
 export const DataContext = createContext<unknown | null>(null);
 
@@ -8,8 +9,8 @@ interface Props {
 };
 
 export const DataProvider = ({ children }: Props ): JSX.Element => {
-    const userId = 12;
-    const dataProvided = {
+    const userId : number = 12;
+    const dataProvided : DataProvided  = {
         userInfos: useFetch(`http://localhost:3000/user/${userId}`),
         userActivity: useFetch(`http://localhost:3000/user/${userId}/activity`),
         userSessions: useFetch(`http://localhost:3000/user/${userId}/average-sessions`),
