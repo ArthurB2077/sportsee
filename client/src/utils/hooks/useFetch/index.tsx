@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { Infos, Activity, AverageSessions, Performances, FetchResponse } from './../../../types';
 
 export const useFetch = (url : string): FetchResponse => {
-    const [data, setData] = useState<Infos | Activity | AverageSessions | Performances | {}>({})
-    const [isLoading, setLoading] = useState<boolean>(true)
-    const [error, setError] = useState<unknown>(false)
+    const [data, setData] = useState<Infos | Activity | AverageSessions | Performances | {}>({});
+    const [isLoading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<unknown>(false);
 
     useEffect((): void => {
         if (!url) return;

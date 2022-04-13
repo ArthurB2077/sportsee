@@ -1,7 +1,20 @@
+import styled from "styled-components";
 
 interface Props {
     userName: string
 }
+
+const InfoTitle = styled.h1 `
+    margin-top: 0;
+    font-weight: 600;
+    span {
+        color: #FF0101;
+    }
+`;
+
+const InfoPara = styled.p `
+
+`;
 
 const Info = (props: Props): JSX.Element => {
     const { userName } = props;
@@ -10,8 +23,8 @@ const Info = (props: Props): JSX.Element => {
         <>
             {userName &&
                 <>
-                    <h1>Bonjour {userName}</h1>
-                    <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
+                    <InfoTitle>Bonjour <span>{userName}</span></InfoTitle>
+                    <InfoPara>Félicitation ! Vous avez explosé vos objectifs hier 👏</InfoPara>
                 </>
             }
         </>

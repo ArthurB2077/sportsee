@@ -10,28 +10,36 @@ import Carbs from '../../assets/images/carbs-icon.png';
 import Fat from '../../assets/images/fat-icon.png';
 import Protein from '../../assets/images/protein-icon.png';
 
+const DashboardContainer = styled.div `
+    font-family: 'Roboto', sans-serif;
+    position: absolute;
+    left: 100px;
+    top: 92px;
+    width: calc(100vw - 100px);
+    height: calc(100vh - 92px);
+    display: flex;
+    flex-direction: column;
+`;
+
+const DashboardTitle = styled.div `
+    margin: 40px 80px;
+`;
+
+const DashboardContent = styled.div `
+    margin: 0px 80px;
+    display: flex;
+    justify-content: space-between;
+`;
+
+const DashboardContentLeft = styled.div `
+
+`;
+
+const DashboardContentRigth = styled.div `
+
+`;
+
 const Dashboard = (): JSX.Element => {
-    const DashboardContainer = styled.div `
-      position: absolute;
-      left: 100px;
-      top: 92px;
-      width: calc(100vw - 100px);
-      height: calc(100vh - 92px);
-      display: flex;
-    `;
-
-    const DashboardContainerLeft = styled.div `
-        width: 80%;
-        display: flex;
-        flex-direction: column;
-    `;
-
-    const DashboardContainerRigth = styled.div `
-        width: 20%;
-        display: flex;
-        flex-direction: column;
-    `;
-
     const { userInfos, userActivity, userSessions, userPerformances}: any = useContext(DataContext);
 
     const text = ["Calories", "Protéines", "Glucides", "Lipides"];
@@ -62,22 +70,26 @@ const Dashboard = (): JSX.Element => {
     
     return (
         <DashboardContainer>
-            <DashboardContainerLeft>
+            <DashboardTitle>
                 {userInfos && Object.entries(userInfos.data).length !== 0 &&
                     <Info userName={userInfos.data && userInfos.data.userInfos && userInfos.data.userInfos.firstName}/>
                 }
-                {userActivity && Object.entries(userActivity.data).length !== 0 &&
-                    <Activity activities={userActivity.data && userActivity.data.sessions}/>
-                }
-                {userSessions && Object.entries(userSessions.data).length !== 0 &&
-                    <Sessions sessions={userSessions.data && userSessions.data.sessions} performances={performances} score={userInfos.data && userInfos.data.todayScore && userInfos.data.todayScore * 100}/>
-                }
-            </DashboardContainerLeft>
-            <DashboardContainerRigth>
-                {userInfos &&  Object.entries(userInfos.data).length !== 0 &&
-                    <Consomation keyData={keyData}></Consomation>
-                }
-            </DashboardContainerRigth>
+            </DashboardTitle>
+            <DashboardContent>
+                <DashboardContentLeft>
+                    {userActivity && Object.entries(userActivity.data).length !== 0 &&
+                        <Activity activities={userActivity.data && userActivity.data.sessions}/>
+                    }
+                    {userSessions && Object.entries(userSessions.data).length !== 0 &&
+                        <Sessions sessions={userSessions.data && userSessions.data.sessions} performances={performances} score={userInfos.data && userInfos.data.todayScore && userInfos.data.todayScore * 100}/>
+                    }
+                </DashboardContentLeft>
+                <DashboardContentRigth>
+                    {userInfos &&  Object.entries(userInfos.data).length !== 0 &&
+                        <Consomation keyData={keyData}></Consomation>
+                    }
+                </DashboardContentRigth>
+            </DashboardContent>
         </DashboardContainer>
     )
 }

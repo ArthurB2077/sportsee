@@ -22,4 +22,4 @@ export const DataProvider = ({ children }: Props ): JSX.Element => {
             {children}
         </DataContext.Provider>
     );
-}; 
+};
