@@ -12,7 +12,7 @@ export interface UserInfos {
 }
 
 export interface SessionsCaloriesPerDay {
-    day: string,
+    day: string | number,
     kilogram: number,
     calories: number,
 }

@@ -11,17 +11,16 @@ interface Props {
 const Sessions = (props: Props): JSX.Element => {
     const SessionsContainer = styled.div `
         display: flex;
-    `
+    `;
+
+    console.log(props.sessions);
 
     return(
         <SessionsContainer>
-            <LineChart width={300} height={250} data={props.sessions}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="day" />
-                <YAxis />
+            <LineChart width={300} height={250} data={props.sessions} style={{backgroundColor: '#FF0000'}}>
+                <XAxis dataKey="day"/>
                 <Tooltip />
-                <Legend />
-                <Line type="monotone" dataKey="sessionLength" stroke="#FF0000" />
+                <Line dot={false} type="monotone" dataKey="sessionLength" stroke="#ffffff" strokeWidth={2}/>
             </LineChart>
             <RadarChart outerRadius={90} width={300} height={250} data={props.performances}>
                 <PolarGrid />

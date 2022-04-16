@@ -9,6 +9,7 @@ import Calories from '../../assets/images/calories-icon.png';
 import Carbs from '../../assets/images/carbs-icon.png';
 import Fat from '../../assets/images/fat-icon.png';
 import Protein from '../../assets/images/protein-icon.png';
+import { SessionsCaloriesPerDay } from '../../types';
 
 const DashboardContainer = styled.div `
     font-family: 'Roboto', sans-serif;
@@ -67,6 +68,14 @@ const Dashboard = (): JSX.Element => {
         );
     });
 
+    const activities = userActivity.data && userActivity.data.sessions && userActivity.data.sessions.map((item : SessionsCaloriesPerDay, index : number) => {
+        return (
+            {
+                ...item,
+                day: index + 1,
+            }
+        );
+    });
     
     return (
         <DashboardContainer>
@@ -78,7 +87,7 @@ const Dashboard = (): JSX.Element => {
             <DashboardContent>
                 <DashboardContentLeft>
                     {userActivity && Object.entries(userActivity.data).length !== 0 &&
-                        <Activity activities={userActivity.data && userActivity.data.sessions}/>
+                        <Activity activities={activities}/>
                     }
                     {userSessions && Object.entries(userSessions.data).length !== 0 &&
                         <Sessions sessions={userSessions.data && userSessions.data.sessions} performances={performances} score={userInfos.data && userInfos.data.todayScore && userInfos.data.todayScore * 100}/>
