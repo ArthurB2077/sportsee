@@ -17,7 +17,7 @@ export interface SessionsCaloriesPerDay {
     calories: number,
 }
 
-export interface Sessions {
+export interface SessionsLength {
     day: number,
     sessionLength: number,
 }
@@ -49,7 +49,7 @@ export interface Activity {
 }
 
 export interface AverageSessions {
-    sessions: Array<Sessions>,
+    sessions: Array<SessionsLength>,
     userId: number,
 }
 

@@ -99,15 +99,15 @@ const Activity = (props: Props): JSX.Element => {
                     </>
                 }
             </CustomToolTipContainer>
-          );
+        );
       
-      };
+    };
 
     return(
         <ChartContainer>
             <BarChart width={835} height={320} data={props.activities}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false}/>
-                <XAxis dataKey="day" />
+                <XAxis dataKey="day" axisLine={false} tickLine={false} tickMargin={15}/>
                 <YAxis yAxisId="right" dataKey="kilogram" orientation="right" axisLine={false} tickLine={false} type="number" domain={['dataMin - 1', 'dataMax']}/>
                 <YAxis yAxisId="left" hide={true}/>
                 <Tooltip content={<CustomTooltip/>}/>

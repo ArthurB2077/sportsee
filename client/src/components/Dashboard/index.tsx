@@ -9,7 +9,7 @@ import Calories from '../../assets/images/calories-icon.png';
 import Carbs from '../../assets/images/carbs-icon.png';
 import Fat from '../../assets/images/fat-icon.png';
 import Protein from '../../assets/images/protein-icon.png';
-import { SessionsCaloriesPerDay } from '../../types';
+import { SessionsCaloriesPerDay, SessionsLength } from '../../types';
 
 const DashboardContainer = styled.div `
     font-family: 'Roboto', sans-serif;
@@ -46,6 +46,7 @@ const Dashboard = (): JSX.Element => {
     const text = ["Calories", "Protéines", "Glucides", "Lipides"];
     const images = [Calories, Protein, Carbs, Fat];
     const consoValues: any = userInfos.data && userInfos.data.keyData && Object.values(userInfos.data.keyData);
+    const days = ["L", 'M', 'ME', 'J', 'V', 'S', 'D'];
 
 
     const keyData = consoValues && text.map((item, index) => {
@@ -76,6 +77,15 @@ const Dashboard = (): JSX.Element => {
             }
         );
     });
+
+    const sessions = userSessions.data && userSessions.data.sessions && userSessions.data.sessions.map((item : SessionsLength, index : number) => {
+        return (
+            {
+                ...item,
+                day: days[index]
+            }
+        )
+    });
     
     return (
         <DashboardContainer>
@@ -90,7 +100,7 @@ const Dashboard = (): JSX.Element => {
                         <Activity activities={activities}/>
                     }
                     {userSessions && Object.entries(userSessions.data).length !== 0 &&
-                        <Sessions sessions={userSessions.data && userSessions.data.sessions} performances={performances} score={userInfos.data && userInfos.data.todayScore && userInfos.data.todayScore * 100}/>
+                        <Sessions sessions={sessions} performances={performances} score={userInfos.data && userInfos.data.todayScore && userInfos.data.todayScore * 100}/>
                     }
                 </DashboardContentLeft>
                 <DashboardContentRigth>
