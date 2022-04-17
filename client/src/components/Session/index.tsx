@@ -11,6 +11,8 @@ interface Props {
 const Sessions = (props: Props): JSX.Element => {
     const SessionsContainer = styled.div `
         display: flex;
+        justify-content: space-between;
+        width: 925px;
     `;
 
     const SessionsLength = styled.div`
@@ -64,11 +66,32 @@ const Sessions = (props: Props): JSX.Element => {
                   </>
               }
           </CustomToolTipContainer>
-      );
-    
-  };
+        );
+    };
 
-  console.log(props.sessions);
+    const Performances = styled.div `
+        background: #000000;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
+        border-radius: 5px;
+        width: 250px;
+        height: 250px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    `;
+
+    const Goal = styled.div `
+        background: transparent;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
+        border-radius: 5px;
+        width: 250px;
+        height: 250px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    `
+
 
     return(
         <SessionsContainer>
@@ -90,12 +113,16 @@ const Sessions = (props: Props): JSX.Element => {
                     <Line dot={false} type="natural" dataKey="sessionLength" stroke="url(#cl1)" strokeWidth={2}/>
                 </LineChart>
             </SessionsLength>
-            <RadarChart outerRadius={90} width={300} height={250} data={props.performances}>
-                <PolarGrid />
-                <PolarAngleAxis dataKey="kind" />
-                <Radar dataKey="value" stroke="#FF0000" fill="#FF0000" fillOpacity={0.6} />
-            </RadarChart>
-            <Pie percentage={props.score} colour="#FF0000" />
+            <Performances>
+                <RadarChart outerRadius={75} width={240} height={240} data={props.performances}>
+                    <PolarGrid />
+                    <PolarAngleAxis dataKey="kind" stroke="#ffffff" tickLine={false} style={{fontSize: '10px'}} axisLine={false}/>
+                    <Radar dataKey="value" stroke="#FF0000" fill="#FF0000" fillOpacity={0.6} dot={false}/>
+                </RadarChart>
+            </Performances>
+            <Goal>
+                <Pie percentage={props.score} colour="#FF0000" />
+            </Goal>
         </SessionsContainer>
     )
 }

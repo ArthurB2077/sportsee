@@ -23,13 +23,14 @@ const DashboardContainer = styled.div `
 `;
 
 const DashboardTitle = styled.div `
-    margin: 40px 80px;
+    margin: 40px auto;
+    width: 80%;
 `;
 
 const DashboardContent = styled.div `
-    margin: 0px 80px;
+    margin: 0px auto;
     display: flex;
-    justify-content: space-between;
+    width: 80%;
 `;
 
 const DashboardContentLeft = styled.div `
@@ -47,6 +48,7 @@ const Dashboard = (): JSX.Element => {
     const images = [Calories, Protein, Carbs, Fat];
     const consoValues: any = userInfos.data && userInfos.data.keyData && Object.values(userInfos.data.keyData);
     const days = ["L", 'M', 'ME', 'J', 'V', 'S', 'D'];
+    const kinds = ["Cardio","Energie","Endurance","Force", "Vitesse","Intensité"];
 
 
     const keyData = consoValues && text.map((item, index) => {
@@ -59,12 +61,12 @@ const Dashboard = (): JSX.Element => {
         )
     });
 
-    const performanceKind = userPerformances && userPerformances.data && userPerformances.data.kind;
-    const performances: Array<any> = userPerformances && userPerformances.data && userPerformances.data.data && userPerformances.data.data.length > 0 && userPerformances.data.data.map((item: any) => {
+    //const performanceKind = userPerformances && userPerformances.data && userPerformances.data.kind;
+    const performances: Array<any> = userPerformances && userPerformances.data && userPerformances.data.data && userPerformances.data.data.length > 0 && userPerformances.data.data.map((item: any, index: number) => {
         return (
             {
                 value: item.value,
-                kind: performanceKind[item.kind]
+                kind: kinds[index]
             }
         );
     });

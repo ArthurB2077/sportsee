@@ -57,14 +57,17 @@ const Para = () => {
 const Pie = ({ percentage, colour }: any) => {
   const pct = cleanPercentage(percentage);
   return (
-    <svg width={200} height={200}>
-      <g transform={`rotate(-135 ${"100 100"})`}>
-        <Circle colour="transparent" />
-        <Circle colour={colour} pct={pct} />
-      </g>
-      <Text percentage={pct} />
-      <Para />
-    </svg>
+    <div>
+      <h5>Score</h5>
+      <svg width={200} height={200}>
+        <g transform={`rotate(-135 ${"100 100"})`}>
+          <Circle colour="transparent" />
+          <Circle colour={colour} pct={pct} />
+        </g>
+        <Text percentage={pct} />
+        <Para />
+      </svg>
+    </div>
   );
 };
 
