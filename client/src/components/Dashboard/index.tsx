@@ -34,11 +34,11 @@ const DashboardContent = styled.div `
 `;
 
 const DashboardContentLeft = styled.div `
-
+    margin-right: 10%;
 `;
 
 const DashboardContentRigth = styled.div `
-
+    margin-left: 5%;
 `;
 
 const Dashboard = (): JSX.Element => {
