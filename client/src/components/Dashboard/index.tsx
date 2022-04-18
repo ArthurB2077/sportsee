@@ -95,12 +95,12 @@ const Dashboard: React.FC = (): JSX.Element => {
                     {activities &&
                         <Activity activities={activities}/>
                     }
-                    {averageSessions !== null && performances !== null && userInfos.data !== null && 'userInfos' in userInfos.data &&
+                    {averageSessions && performances && userInfos.data !== null && 'userInfos' in userInfos.data &&
                         <Sessions sessions={averageSessions} performances={performances} score={userInfos.data && userInfos.data.todayScore && userInfos.data.todayScore * 100}/>
                     }
                 </DashboardContentLeft>
                 <DashboardContentRigth>
-                    {keyData !== null &&
+                    {keyData &&
                         <Consomation keyData={keyData}></Consomation>
                     }
                 </DashboardContentRigth>
