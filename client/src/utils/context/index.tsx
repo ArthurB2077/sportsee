@@ -2,7 +2,14 @@ import React, { createContext } from 'react';
 import { useFetch } from '../hooks/useFetch';
 import { DataProvided } from './../../types';
 
-export const DataContext = createContext<unknown | null>(null);
+const defaultState : DataProvided = {
+    userInfos: { isLoading: true, data: null, error: false },
+    userActivity: { isLoading: true, data: null, error: false },
+    userSessions: { isLoading: true, data: null, error: false },
+    userPerformances: { isLoading: true, data: null, error: false },
+}
+
+export const DataContext = createContext<DataProvided>(defaultState);
 
 interface Props {
     children : React.ReactNode

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import LogoPNG from './../../assets/images/logo.png';
+import SportseeLogo from './../../assets/icons/logo.png';
 
-const TopBar = (): JSX.Element => {
+const TopBar: React.FC = (): JSX.Element => {
 
     const Nav = styled.nav `
         background-color: black;
@@ -15,12 +15,12 @@ const TopBar = (): JSX.Element => {
         z-index: 2;
     `;
 
-    const Logo = styled.img `
+    const NavLogo = styled.img `
         width: 180px;
         height: 60px;
     `;
 
-    const Link = styled.a `
+    const NavLink = styled.a `
         color: #FFFFFF;
         text-decoration: none;
         font-family: 'Roboto';
@@ -34,11 +34,11 @@ const TopBar = (): JSX.Element => {
 
     return(
         <Nav>
-            <Logo src={LogoPNG} alt='Logo'></Logo>
-            <Link href="." >Accueil</Link>
-            <Link href="." >Profil</Link>
-            <Link href="." >Réglages</Link>
-            <Link href="." >Communauté</Link>
+            <NavLogo src={SportseeLogo} alt='Logo de Sportsee'/>
+            <NavLink href="." >Accueil</NavLink>
+            <NavLink href="." >Profil</NavLink>
+            <NavLink href="." >Réglages</NavLink>
+            <NavLink href="." >Communauté</NavLink>
         </Nav>
     );
 };

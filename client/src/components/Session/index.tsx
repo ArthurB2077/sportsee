@@ -1,4 +1,4 @@
-import { LineChart, RadarChart, Line, Radar, CartesianGrid, PolarGrid, XAxis, PolarAngleAxis, YAxis, Tooltip, Legend } from 'recharts';
+import { LineChart, RadarChart, Line, Radar, PolarGrid, XAxis, PolarAngleAxis, Tooltip } from 'recharts';
 import Pie from '../Pie';
 import styled from 'styled-components';
 

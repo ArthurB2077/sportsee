@@ -1,57 +1,79 @@
 import { useContext } from "react";
-import { DataContext } from '../../utils/context';
-import Info from "../../components/Info";
 import styled from "styled-components";
+import { DataContext } from '../../utils/context';
+import { SessionsCaloriesPerDay, SessionsLength, Performance, ConsomationItem } from '../../types';
+import CaloriesIcon from '../../assets/icons/calories-icon.png';
+import CarbsIcon from '../../assets/icons/carbs-icon.png';
+import FatIcon from '../../assets/icons/fat-icon.png';
+import ProteinIcon from '../../assets/icons/protein-icon.png';
+import Info from "../../components/Info";
 import Activity from "../Activity";
 import Sessions from "../Session";
 import Consomation from "../Consomation";
-import Calories from '../../assets/images/calories-icon.png';
-import Carbs from '../../assets/images/carbs-icon.png';
-import Fat from '../../assets/images/fat-icon.png';
-import Protein from '../../assets/images/protein-icon.png';
-import { SessionsCaloriesPerDay, SessionsLength } from '../../types';
-
-const DashboardContainer = styled.div `
-    font-family: 'Roboto', sans-serif;
-    position: absolute;
-    left: 100px;
-    top: 92px;
-    width: calc(100vw - 100px);
-    height: calc(100vh - 92px);
-    display: flex;
-    flex-direction: column;
-`;
-
-const DashboardTitle = styled.div `
-    margin: 40px auto;
-    width: 80%;
-`;
-
-const DashboardContent = styled.div `
-    margin: 0px auto;
-    display: flex;
-    width: 80%;
-`;
-
-const DashboardContentLeft = styled.div `
-    margin-right: 10%;
-`;
-
-const DashboardContentRigth = styled.div `
-    margin-left: 5%;
-`;
-
-const Dashboard = (): JSX.Element => {
-    const { userInfos, userActivity, userSessions, userPerformances}: any = useContext(DataContext);
-
-    const text = ["Calories", "Protéines", "Glucides", "Lipides"];
-    const images = [Calories, Protein, Carbs, Fat];
-    const consoValues: any = userInfos.data && userInfos.data.keyData && Object.values(userInfos.data.keyData);
-    const days = ["L", 'M', 'ME', 'J', 'V', 'S', 'D'];
-    const kinds = ["Cardio","Energie","Endurance","Force", "Vitesse","Intensité"];
 
 
-    const keyData = consoValues && text.map((item, index) => {
+const Dashboard: React.FC = (): JSX.Element => {
+
+    /**
+     * @description Style section for the dashboard
+     */
+    const DashboardContainer = styled.div `
+        font-family: 'Roboto', sans-serif;
+        position: absolute;
+        left: 100px;
+        top: 92px;
+        width: calc(100vw - 100px);
+        height: calc(100vh - 92px);
+        display: flex;
+        flex-direction: column;
+    `;
+    const DashboardTitle = styled.div `
+        margin: 40px auto;
+        width: 80%;
+    `;
+    const DashboardContent = styled.div `
+        margin: 0px auto;
+        display: flex;
+        width: 80%;
+    `;
+    const DashboardContentLeft = styled.div `
+        margin-right: 10%;
+    `;
+    const DashboardContentRigth = styled.div `
+        margin-left: 5%;
+    `;
+
+    const { userInfos, userActivity, userSessions, userPerformances} = useContext(DataContext);
+    const text: Array<string> = ["Calories", "Protéines", "Glucides", "Lipides"];
+    const days: Array<string> = ["L", 'M', 'ME', 'J', 'V', 'S', 'D'];
+    const kinds: Array<string> = ["Cardio","Energie","Endurance","Force", "Vitesse","Intensité"];
+    const images: Array<string> = [CaloriesIcon, ProteinIcon, CarbsIcon, FatIcon];
+    const consoValues: Array<number> | false = userInfos.data !== null && 'keyData' in userInfos.data && Object.values(userInfos.data.keyData);
+    const activities: Array<SessionsCaloriesPerDay> | false = userActivity.data !== null && 'sessions' in userActivity.data && userActivity.data.sessions.map((item : SessionsCaloriesPerDay, index : number) => {
+        return (
+            {
+                ...item,
+                day: index + 1,
+            }
+        );
+    });
+    const averageSessions: Array<SessionsLength> | false = userSessions.data !== null && 'averageSessions' in userSessions.data && userSessions.data.averageSessions.map((item : SessionsLength, index : number) => {
+        return (
+            {
+                ...item,
+                day: days[index]
+            }
+        );
+    });
+    const performances: Array<Performance> | false = userPerformances.data !== null && 'data' in userPerformances.data && userPerformances.data.data.map((item: Performance, index: number) => {
+        return (
+            {
+                value: item.value,
+                kind: kinds[index]
+            }
+        );
+    });
+    const keyData: Array<ConsomationItem> | false = consoValues && text.map((item, index) => {
         return (
             {
                 name: item,
@@ -60,59 +82,31 @@ const Dashboard = (): JSX.Element => {
             }
         )
     });
-
-    //const performanceKind = userPerformances && userPerformances.data && userPerformances.data.kind;
-    const performances: Array<any> = userPerformances && userPerformances.data && userPerformances.data.data && userPerformances.data.data.length > 0 && userPerformances.data.data.map((item: any, index: number) => {
-        return (
-            {
-                value: item.value,
-                kind: kinds[index]
-            }
-        );
-    });
-
-    const activities = userActivity.data && userActivity.data.sessions && userActivity.data.sessions.map((item : SessionsCaloriesPerDay, index : number) => {
-        return (
-            {
-                ...item,
-                day: index + 1,
-            }
-        );
-    });
-
-    const sessions = userSessions.data && userSessions.data.sessions && userSessions.data.sessions.map((item : SessionsLength, index : number) => {
-        return (
-            {
-                ...item,
-                day: days[index]
-            }
-        )
-    });
     
     return (
         <DashboardContainer>
             <DashboardTitle>
-                {userInfos && Object.entries(userInfos.data).length !== 0 &&
+                {userInfos.data && 'userInfos' in userInfos.data &&
                     <Info userName={userInfos.data && userInfos.data.userInfos && userInfos.data.userInfos.firstName}/>
                 }
             </DashboardTitle>
             <DashboardContent>
                 <DashboardContentLeft>
-                    {userActivity && Object.entries(userActivity.data).length !== 0 &&
+                    {activities &&
                         <Activity activities={activities}/>
                     }
-                    {userSessions && Object.entries(userSessions.data).length !== 0 &&
-                        <Sessions sessions={sessions} performances={performances} score={userInfos.data && userInfos.data.todayScore && userInfos.data.todayScore * 100}/>
+                    {averageSessions !== null && performances !== null && userInfos.data !== null && 'userInfos' in userInfos.data &&
+                        <Sessions sessions={averageSessions} performances={performances} score={userInfos.data && userInfos.data.todayScore && userInfos.data.todayScore * 100}/>
                     }
                 </DashboardContentLeft>
                 <DashboardContentRigth>
-                    {userInfos &&  Object.entries(userInfos.data).length !== 0 &&
+                    {keyData !== null &&
                         <Consomation keyData={keyData}></Consomation>
                     }
                 </DashboardContentRigth>
             </DashboardContent>
         </DashboardContainer>
-    )
-}
+    );
+};
 
 export default Dashboard;

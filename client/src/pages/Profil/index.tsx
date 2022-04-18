@@ -1,8 +1,8 @@
-import LeftSideBar from "../../layout/LeftSideBar";
 import TopBar from "../../layout/TopBar";
+import LeftSideBar from "../../layout/LeftSideBar";
 import Dashboard from "../../components/Dashboard";
 
-const Profil = () => {
+const Profil: React.FC = (): JSX.Element => {
     return(
         <>
             <TopBar/>

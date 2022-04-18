@@ -18,7 +18,7 @@ export interface SessionsCaloriesPerDay {
 }
 
 export interface SessionsLength {
-    day: number,
+    day: string | number,
     sessionLength: number,
 }
 
@@ -36,6 +36,12 @@ export interface PerformanceKind {
     6: string,
 }
 
+export interface ConsomationItem {
+    name: string;
+    value: number;
+    image: string;
+}
+
 export interface Infos {
     id: number,
     keyData: KeyData,
@@ -49,7 +55,7 @@ export interface Activity {
 }
 
 export interface AverageSessions {
-    sessions: Array<SessionsLength>,
+    averageSessions: Array<SessionsLength>,
     userId: number,
 }
 
@@ -61,7 +67,7 @@ export interface Performances {
 
 export interface FetchResponse {
     isLoading: boolean,
-    data: Infos | Activity | AverageSessions | Performances | {},
+    data: Infos | Activity | AverageSessions | Performances | null,
     error: unknown,
 }
 

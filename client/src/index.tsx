@@ -1,13 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Profil from './pages/Profil';
 import { DataProvider } from './utils/context/';
+import Profil from './pages/Profil';
 
 ReactDOM.render(
-  <React.StrictMode>
     <DataProvider>
-      <Profil />
-    </DataProvider>
-  </React.StrictMode>,
+      <Profil/>
+    </DataProvider>,
   document.getElementById('root')
 );

@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import NavItem1 from '../../assets/images/icon-nav-1.png'
-import NavItem2 from '../../assets/images/icon-nav-2.png'
-import NavItem3 from '../../assets/images/icon-nav-3.png'
-import NavItem4 from '../../assets/images/icon-nav-4.png'
+import MeditationIcon from '../../assets/icons/icon-meditation.png';
+import SwimmingIcon from '../../assets/icons/icon-swimming.png';
+import CyclingIcon from '../../assets/icons/icon-cycling.png';
+import BodybuildingIcon from '../../assets/icons/icon-bodybuilding.png';
 
-const LeftSideBar = () => {
+const LeftSideBar: React.FC = (): JSX.Element => {
 
-    const NavBar = styled.nav `
+    const LeftBar = styled.nav `
         background-color: #000000;
         height: 100vh;
         width: 100px;
@@ -20,7 +20,7 @@ const LeftSideBar = () => {
         justify-content: space-evenly;
     `;
 
-    const NavContainer = styled.div `
+    const LeftBarContainer = styled.div `
         display: flex;
         flex-direction: column;
         align-items:center;
@@ -28,11 +28,11 @@ const LeftSideBar = () => {
         padding-top: 10vh;
     `;
 
-    const NavItem = styled.img `
+    const LeftBarItem = styled.img `
         margin-top: 2.5vh;
     `;
 
-    const Copyright = styled.p `
+    const LeftBarCopyright = styled.p `
         font-family: 'Roboto';
         font-style: normal;
         font-weight: 500;
@@ -44,15 +44,15 @@ const LeftSideBar = () => {
     `;
 
     return(
-        <NavBar>
-            <NavContainer>
-                <NavItem src={NavItem1} alt='Méditation'/>
-                <NavItem src={NavItem2} alt='Nage'/>
-                <NavItem src={NavItem3} alt='Vélo'/>
-                <NavItem src={NavItem4} alt='Musculation'/>
-            </NavContainer>
-            <Copyright>Copiryght, SportSee 2020</Copyright>
-        </NavBar>
+        <LeftBar>
+            <LeftBarContainer>
+                <LeftBarItem src={MeditationIcon} alt='Méditation'/>
+                <LeftBarItem src={SwimmingIcon} alt='Nage'/>
+                <LeftBarItem src={CyclingIcon} alt='Vélo'/>
+                <LeftBarItem src={BodybuildingIcon} alt='Musculation'/>
+            </LeftBarContainer>
+            <LeftBarCopyright>Copiryght, SportSee 2020</LeftBarCopyright>
+        </LeftBar>
     );
 };
 
