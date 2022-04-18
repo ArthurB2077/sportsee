@@ -1,7 +1,17 @@
 import styled from 'styled-components';
 import SportseeLogo from './../../assets/icons/logo.png';
 
+
+/**
+ * @description Top bar of the interface displaying the logo and main navigation menu
+ */
+
 const TopBar: React.FC = (): JSX.Element => {
+
+
+    /**
+     * @description Style section for the top bar
+     */
 
     const Nav = styled.nav `
         background-color: black;
@@ -32,6 +42,7 @@ const TopBar: React.FC = (): JSX.Element => {
         justify-content:center;
     `;
 
+
     return(
         <Nav>
             <NavLogo src={SportseeLogo} alt='Logo de Sportsee'/>
@@ -42,5 +53,6 @@ const TopBar: React.FC = (): JSX.Element => {
         </Nav>
     );
 };
+
 
 export default TopBar;

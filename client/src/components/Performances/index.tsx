@@ -1,5 +1,5 @@
-import { RadarChart, Radar, PolarGrid, PolarAngleAxis } from 'recharts';
 import styled from "styled-components";
+import { RadarChart, Radar, PolarGrid, PolarAngleAxis } from 'recharts';
 import { Performance } from "../../types";
 
 interface Props {

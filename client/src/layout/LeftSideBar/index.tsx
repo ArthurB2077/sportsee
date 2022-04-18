@@ -4,8 +4,17 @@ import SwimmingIcon from '../../assets/icons/icon-swimming.png';
 import CyclingIcon from '../../assets/icons/icon-cycling.png';
 import BodybuildingIcon from '../../assets/icons/icon-bodybuilding.png';
 
+
+/**
+ * @description Left side bar displaying each activity icons
+ */
+
 const LeftSideBar: React.FC = (): JSX.Element => {
 
+
+    /**
+     * @description Style section for the left side bar
+     */
     const LeftBar = styled.nav `
         background-color: #000000;
         height: 100vh;
@@ -43,6 +52,7 @@ const LeftSideBar: React.FC = (): JSX.Element => {
         white-space: nowrap;
     `;
 
+
     return(
         <LeftBar>
             <LeftBarContainer>
@@ -55,5 +65,6 @@ const LeftSideBar: React.FC = (): JSX.Element => {
         </LeftBar>
     );
 };
+
 
 export default LeftSideBar;

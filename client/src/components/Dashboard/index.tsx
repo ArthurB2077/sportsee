@@ -1,7 +1,7 @@
-import { useContext } from "react";
 import styled from "styled-components";
+import { useContext } from "react";
 import { DataContext } from '../../utils/context';
-import { SessionsCaloriesPerDay, SessionsLength, Performance, ConsomationItem } from '../../types';
+import { SessionsCaloriesPerDay, SessionsLength, Performance, NutrientConsumptionItem } from '../../types';
 import CaloriesIcon from '../../assets/icons/calories-icon.png';
 import CarbsIcon from '../../assets/icons/carbs-icon.png';
 import FatIcon from '../../assets/icons/fat-icon.png';
@@ -11,27 +11,32 @@ import PerformanceIndicator from '../Performances';
 import GoalIndicator from '../Goal';
 import SessionLengthIndicator from '../SessionLength';
 import Activity from "../Activity";
-import Consomation from "../Consomation";
+import NutrientConsumption from "../NutrientConsumption";
 
+
+/**
+ * @description Main dashboard component displaying all other components
+ */
 
 const Dashboard: React.FC = (): JSX.Element => {
 
     /**
      * @description Style section for the dashboard
      */
+
     const DashboardContainer = styled.div `
         font-family: 'Roboto', sans-serif;
         position: absolute;
         left: 100px;
         top: 92px;
-        width: calc(100vw - 100px);
+        width: calc(90vw - 100px);
         height: calc(100vh - 92px);
         display: flex;
         flex-direction: column;
     `;
 
     const DashboardTitle = styled.div `
-        margin: 40px auto;
+        margin: auto;
         width: 80%;
     `;
 
@@ -57,7 +62,7 @@ const Dashboard: React.FC = (): JSX.Element => {
 
 
     /**
-     * @constant {DataContext} Api's data retrived from the global DataContext
+     * @description Api's data retrived from the global DataContext
      */
 
     const { userInfos, userActivity, userSessions, userPerformances} = useContext(DataContext);
@@ -67,23 +72,22 @@ const Dashboard: React.FC = (): JSX.Element => {
      * @description Labels for data visualization in the dashboard
      */
 
-    const text: Array<string> = ["Calories", "Protéines", "Glucides", "Lipides"];
+    const nutrientLabels: Array<string> = ["Calories", "Protéines", "Glucides", "Lipides"];
 
-    const days: Array<string> = ["L", 'M', 'ME', 'J', 'V', 'S', 'D'];
+    const daysLabels: Array<string> = ["L", 'M', 'ME', 'J', 'V', 'S', 'D'];
 
-    const kinds: Array<string> = ["Cardio","Energie","Endurance","Force", "Vitesse","Intensité"];
+    const kindsLabels: Array<string> = ["Cardio","Energie","Endurance","Force", "Vitesse","Intensité"];
 
-    const images: Array<string> = [CaloriesIcon, ProteinIcon, CarbsIcon, FatIcon];
+    const nutrientIcons: Array<string> = [CaloriesIcon, ProteinIcon, CarbsIcon, FatIcon];
 
-    const consoValues: Array<number> | false = userInfos.data !== null && 'keyData' in userInfos.data && Object.values(userInfos.data.keyData);
+    const nutrientValues: Array<number> | false = userInfos.data !== null && 'keyData' in userInfos.data && Object.values(userInfos.data.keyData);
 
 
     /**
-     * @constant {activities, averageSessions, performances, keyData} Array of data transformed with labels for data visualization in the dashboard
      * @description Api's data retrived from the global DataContext transformed with labels for data visualization in the dashboard
      */
 
-    const activities: Array<SessionsCaloriesPerDay> | false = userActivity.data !== null && 'sessions' in userActivity.data && userActivity.data.sessions.map((item : SessionsCaloriesPerDay, index : number) => {
+    const sessionsCaloriesPerDay: Array<SessionsCaloriesPerDay> | false = userActivity.data !== null && 'sessions' in userActivity.data && userActivity.data.sessions.map((item : SessionsCaloriesPerDay, index : number) => {
         return (
             {
                 ...item,
@@ -92,11 +96,11 @@ const Dashboard: React.FC = (): JSX.Element => {
         );
     });
 
-    const averageSessions: Array<SessionsLength> | false = userSessions.data !== null && 'averageSessions' in userSessions.data && userSessions.data.averageSessions.map((item : SessionsLength, index : number) => {
+    const sessionsLength: Array<SessionsLength> | false = userSessions.data !== null && 'averageSessions' in userSessions.data && userSessions.data.averageSessions.map((item : SessionsLength, index : number) => {
         return (
             {
                 ...item,
-                day: days[index]
+                day: daysLabels[index]
             }
         );
     });
@@ -105,17 +109,17 @@ const Dashboard: React.FC = (): JSX.Element => {
         return (
             {
                 value: item.value,
-                kind: kinds[index]
+                kind: kindsLabels[index]
             }
         );
     });
 
-    const keyData: Array<ConsomationItem> | false = consoValues && text.map((item, index) => {
+    const nutrients: Array<NutrientConsumptionItem> | false = nutrientValues && nutrientLabels.map((item, index) => {
         return (
             {
                 name: item,
-                value: consoValues[index],
-                image: images[index]
+                value: nutrientValues[index],
+                image: nutrientIcons[index]
             }
         )
     });
@@ -130,12 +134,12 @@ const Dashboard: React.FC = (): JSX.Element => {
             </DashboardTitle>
             <DashboardContent>
                 <DashboardContentLeft>
-                    {activities &&
-                        <Activity activities={activities}/>
+                    {sessionsCaloriesPerDay &&
+                        <Activity activities={sessionsCaloriesPerDay}/>
                     }
                     <IndicatorsPanelContainer>
-                        {averageSessions && 
-                            <SessionLengthIndicator averageSessions={averageSessions}/>
+                        {sessionsLength && 
+                            <SessionLengthIndicator sessionsLength={sessionsLength}/>
                         }
                         {performances && 
                             <PerformanceIndicator performances={performances}/>
@@ -146,13 +150,14 @@ const Dashboard: React.FC = (): JSX.Element => {
                     </IndicatorsPanelContainer>
                 </DashboardContentLeft>
                 <DashboardContentRigth>
-                    {keyData &&
-                        <Consomation keyData={keyData}></Consomation>
+                    {nutrients &&
+                        <NutrientConsumption nutrients={nutrients} />
                     }
                 </DashboardContentRigth>
             </DashboardContent>
         </DashboardContainer>
     );
 };
+
 
 export default Dashboard;

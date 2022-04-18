@@ -1,10 +1,10 @@
-import { LineChart, Line, XAxis, Tooltip } from 'recharts';
 import styled from 'styled-components';
+import { LineChart, Line, XAxis, Tooltip } from 'recharts';
 import { SessionsLength } from '../../types';
 
 interface Props {
-    averageSessions: Array<SessionsLength>,
-}
+    sessionsLength: Array<SessionsLength>,
+};
 
 const SessionLengthIndicator: React.FC<Props> = (props): JSX.Element => {
 
@@ -52,13 +52,13 @@ const SessionLengthIndicator: React.FC<Props> = (props): JSX.Element => {
     const CustomTooltipLine = ({label}: any) => {
         const days = ["L", 'M', 'ME', 'J', 'V', 'S', 'D'];
         return (
-        <CustomToolTipContainer>
-            {props.averageSessions && label && props.averageSessions[days.indexOf(label)] && 
-                <>
-                    <CustomToolTipItem>{`${props.averageSessions[days.indexOf(label)].sessionLength}`}min</CustomToolTipItem>
-                </>
-            }
-        </CustomToolTipContainer>
+            <CustomToolTipContainer>
+                {props.sessionsLength && label && props.sessionsLength[days.indexOf(label)] && 
+                    <>
+                        <CustomToolTipItem>{`${props.sessionsLength[days.indexOf(label)].sessionLength}`}min</CustomToolTipItem>
+                    </>
+                }
+            </CustomToolTipContainer>
         );
     };
 
@@ -67,7 +67,7 @@ const SessionLengthIndicator: React.FC<Props> = (props): JSX.Element => {
             <SessionsLengthTitle>
                 <h5>Durée moyenne des sessions</h5>
             </SessionsLengthTitle>
-            <LineChart width={250} height={150} data={props.averageSessions}>
+            <LineChart width={250} height={150} data={props.sessionsLength}>
                 <XAxis dataKey="day" axisLine={false} tickLine={false} tickMargin={40} height={55} padding={{ left: 15, right: 15 }} style={{fill: 'rgba(255, 255, 255, 0.5)'}}/>
                 <Tooltip content={CustomTooltipLine}/>
                 <svg width="0" height="0">

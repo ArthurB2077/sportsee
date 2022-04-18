@@ -1,4 +1,4 @@
-export interface KeyData {
+export interface NutrientConsumption {
     calorieCount: number,
     carbohydrateCount: number,
     lipidCount: number,
@@ -36,7 +36,7 @@ export interface PerformanceKind {
     6: string,
 }
 
-export interface ConsomationItem {
+export interface NutrientConsumptionItem {
     name: string;
     value: number;
     image: string;
@@ -44,7 +44,7 @@ export interface ConsomationItem {
 
 export interface Infos {
     id: number,
-    keyData: KeyData,
+    keyData: NutrientConsumption,
     todayScore: number,
     userInfos: UserInfos,
 }

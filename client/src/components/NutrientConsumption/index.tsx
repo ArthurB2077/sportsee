@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 
 interface Props {
-    keyData: any,
-}
+    nutrients: any,
+};
 
-const ConsomationContainer = styled.div `
+const NutrientConsumptionContainer = styled.div `
     display: flex;
     flex-direction: column;
 `;
 
-const ConsomationItem = styled.div `
+const NutrientConsumptionItem = styled.div `
     display: flex;
     align-items: center;
     justify-content: center;
@@ -23,23 +23,23 @@ const ConsomationItem = styled.div `
         width: 60px;
         height: 60px;
         margin-right: 20px;
-    }
+    };
 `;
 
-const Consomation = (props: Props): JSX.Element => {
+const NutrientConsumption = (props: Props): JSX.Element => {
 
     return (
-        <ConsomationContainer>
-            {props.keyData && props.keyData.map((item: any) => {
+        <NutrientConsumptionContainer>
+            {props.nutrients && props.nutrients.map((item: any) => {
                 return(
-                    <ConsomationItem>
+                    <NutrientConsumptionItem>
                         <img src={item.image} alt={item.name}/>
                         <div> {item.name} {item.value}</div>
-                    </ConsomationItem>
+                    </NutrientConsumptionItem>
                 );
             })}
-        </ConsomationContainer>
-    )
+        </NutrientConsumptionContainer>
+    );
 };
 
-export default Consomation;
+export default NutrientConsumption;

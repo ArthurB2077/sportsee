@@ -4,7 +4,7 @@ import { Infos } from '../../types';
 
 interface Props {
     score: Infos["todayScore"],
-}
+};
 
 const GoalIndicator: React.FC<Props> = (props): JSX.Element => {
 
@@ -22,7 +22,7 @@ const GoalIndicator: React.FC<Props> = (props): JSX.Element => {
 
     return (
         <Goal>
-            <Pie percentage={props.score} colour="#FF0000" />
+            <Pie percentage={props.score} colour="#FF0000"/>
         </Goal>
     );
 };
