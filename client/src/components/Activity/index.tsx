@@ -1,71 +1,92 @@
-import { BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Bar, Legend } from 'recharts';
 import styled from 'styled-components';
+import { BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Bar, Legend } from 'recharts';
 import { SessionsCaloriesPerDay } from '../../types';
+
 
 interface Props {
     activities: Array<SessionsCaloriesPerDay>
-}
+};
 
-const ChartContainer = styled.div`
-    background: #FBFBFB;
-    padding: 20px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
-    border-radius: 5px;
-`;
 
-const LegendContainer = styled.div `
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 50px;
-`;
+const Activity: React.FC<Props> = (props): JSX.Element => {
+    
+    /**
+     * @description Style section for the activity chart container component
+     */
 
-const LegendTitle = styled.h5 `
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 15px;
-    margin: 0;
-`;
+    const ActivityChartContainer = styled.div`
+        background: #FBFBFB;
+        padding: 20px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
+        border-radius: 5px;
+    `;
 
-const LegendItemContainer = styled.div `
-    display: flex;
-    align-items: center;
-`;
 
-const LegendItem = styled.div `
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    margin-right: 35px;
-`;
+    /**
+     * @description Style section for the legend function 
+     */
 
-const LegendDot = styled.span `
-    display: block;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: ${({color}) => color};
-    margin-right: 10px;
-`;
+    const LegendContainer = styled.div `
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 50px;
+    `;
 
-const CustomToolTipContainer = styled.div `
-    background-color: #FF0000;
-    padding: 5px 15px 2px 15px;
-`;
+    const LegendTitle = styled.h5 `
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 15px;
+        margin: 0;
+    `;
 
-const CustomToolTipItem = styled.p `
-    color: #ffffff;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    margin-bottom: 30px;
-`;   
+    const LegendItemContainer = styled.div `
+        display: flex;
+        align-items: center;
+    `;
 
-const Activity = (props: Props): JSX.Element => {
+    const LegendItem = styled.div `
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        margin-right: 35px;
+    `;
 
-    const legend = () => {
+    const LegendDot = styled.span `
+        display: block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: ${({color}) => color};
+        margin-right: 10px;
+    `;
+
+
+    /**
+     * @description Style section for the custom tooltip component
+     */
+
+    const CustomToolTipContainer = styled.div `
+        background-color: #FF0000;
+        padding: 5px 15px 2px 15px;
+    `;
+
+    const CustomToolTipItem = styled.p `
+        color: #ffffff;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        margin-bottom: 30px;
+    `;
+
+
+    /**
+     * @description function that returns element to display in the legend section of the chart
+     */
+
+    const legend: Function = (): JSX.Element => {
         return (
             <LegendContainer>
                 <LegendTitle>Activité quotidienne</LegendTitle>
@@ -79,7 +100,12 @@ const Activity = (props: Props): JSX.Element => {
         );
     };
 
-    const tooltipData = props.activities && props.activities.map((item: SessionsCaloriesPerDay) => {
+
+    /**
+     * @description Array that contains data retrieved from the props.activities wich need to be displayed in the CustomToolTip component
+     */
+
+    const tooltipData: Array<{calories: number, kilogram: number}> = props.activities && props.activities.map((item: SessionsCaloriesPerDay) => {
         return (
             {
                 calories: item.calories,
@@ -88,11 +114,15 @@ const Activity = (props: Props): JSX.Element => {
         );
     });
 
-    const CustomTooltip = ({ label }: any) => {
 
+    /**
+     * @description Component that displays the tooltip when hovering over a bar in the chart. The value label corresponding to the hovered x axis value.
+     */
+
+    const CustomTooltip: Function = ({ label }: any): JSX.Element => {
           return (
             <CustomToolTipContainer>
-                {tooltipData && label && tooltipData[label -1] && 
+                {tooltipData && typeof label === 'number' && tooltipData[label -1] && 
                     <>
                         <CustomToolTipItem>{`${tooltipData[label - 1].calories}`}Kcal</CustomToolTipItem>
                         <CustomToolTipItem>{`${tooltipData[label - 1].kilogram}`}kg</CustomToolTipItem>
@@ -100,11 +130,11 @@ const Activity = (props: Props): JSX.Element => {
                 }
             </CustomToolTipContainer>
         );
-      
     };
 
+
     return(
-        <ChartContainer>
+        <ActivityChartContainer>
             <BarChart width={835} height={320} data={props.activities}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false}/>
                 <XAxis dataKey="day" axisLine={false} tickLine={false} tickMargin={15}/>
@@ -115,8 +145,9 @@ const Activity = (props: Props): JSX.Element => {
                 <Bar yAxisId="right" dataKey="kilogram" fill="#000000" radius={[15, 15, 0, 0]} barSize={10}/>
                 <Bar yAxisId="left" dataKey="calories" fill="#FF0000" radius={[15, 15, 0, 0]} barSize={10}/>
             </BarChart>
-        </ChartContainer>
-    )
-}
+        </ActivityChartContainer>
+    );
+};
+
 
 export default Activity;
