@@ -2,11 +2,21 @@ import styled from 'styled-components';
 import { LineChart, Line, XAxis, Tooltip } from 'recharts';
 import { SessionsLength } from '../../types';
 
+
 interface Props {
     sessionsLength: Array<SessionsLength>,
 };
 
+
+/**
+ * @description SessionLengthIndicator component displaying the length of user sessions in line chart
+ */
+
 const SessionLengthIndicator: React.FC<Props> = (props): JSX.Element => {
+
+    /**
+     * @description Style section for the SessionLengthIndicator component
+     */
 
     const SessionsLength = styled.div`
         background: #FF0000;
@@ -32,6 +42,11 @@ const SessionLengthIndicator: React.FC<Props> = (props): JSX.Element => {
         margin-left: 20%;
     `;
 
+
+    /**
+     * @description Style section for the custom tooltip compoenent
+     */
+
     const CustomToolTipContainer = styled.div `
         background-color: #ffffff;
         width: 50px;
@@ -49,11 +64,19 @@ const SessionLengthIndicator: React.FC<Props> = (props): JSX.Element => {
         font-size: 12px;
     `;   
 
+
+    /**
+     * @description Component that displays the tooltip when hovering over a point in the chart. The value label corresponding to the hovered x axis value.
+     */
+
     const CustomTooltipLine = ({label}: any) => {
-        const days = ["L", 'M', 'ME', 'J', 'V', 'S', 'D'];
+
+        const days: Array<string> = ["L", 'M', 'ME', 'J', 'V', 'S', 'D'];
+
+
         return (
             <CustomToolTipContainer>
-                {props.sessionsLength && label && props.sessionsLength[days.indexOf(label)] && 
+                {props.sessionsLength && typeof label === 'string' && props.sessionsLength[days.indexOf(label)] && 
                     <>
                         <CustomToolTipItem>{`${props.sessionsLength[days.indexOf(label)].sessionLength}`}min</CustomToolTipItem>
                     </>

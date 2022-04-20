@@ -8,6 +8,10 @@ interface Props {
 };
 
 
+/**
+ * @description Activity component displaying the user activity bar chart
+ */
+
 const Activity: React.FC<Props> = (props): JSX.Element => {
     
     /**
@@ -87,6 +91,7 @@ const Activity: React.FC<Props> = (props): JSX.Element => {
      */
 
     const legend: Function = (): JSX.Element => {
+        
         return (
             <LegendContainer>
                 <LegendTitle>Activité quotidienne</LegendTitle>
@@ -106,6 +111,7 @@ const Activity: React.FC<Props> = (props): JSX.Element => {
      */
 
     const tooltipData: Array<{calories: number, kilogram: number}> = props.activities && props.activities.map((item: SessionsCaloriesPerDay) => {
+
         return (
             {
                 calories: item.calories,
@@ -120,6 +126,7 @@ const Activity: React.FC<Props> = (props): JSX.Element => {
      */
 
     const CustomTooltip: Function = ({ label }: any): JSX.Element => {
+
           return (
             <CustomToolTipContainer>
                 {tooltipData && typeof label === 'number' && tooltipData[label -1] && 

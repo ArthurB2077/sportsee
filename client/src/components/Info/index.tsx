@@ -9,7 +9,7 @@ interface Props {
  * @description Info component displaying the user name and a gretings message
  */
 
-const Info = (props: Props): JSX.Element => {
+const Info: React.FC<Props> = (props): JSX.Element => {
 
     /**
      * @description Style section for the info component
