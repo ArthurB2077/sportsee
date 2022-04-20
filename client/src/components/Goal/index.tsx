@@ -1,12 +1,21 @@
 import styled from 'styled-components';
-import Pie from '../Pie';
 import { Infos } from '../../types';
+import Pie from '../Pie';
+
 
 interface Props {
     score: Infos["todayScore"],
 };
 
+/**
+ * @description Component that displays the user score in a pie chart
+ */
+
 const GoalIndicator: React.FC<Props> = (props): JSX.Element => {
+
+    /**
+     * @description Style section for the GoalIndicator component
+     */
 
     const Goal = styled.div `
         background: transparent;
@@ -20,11 +29,13 @@ const GoalIndicator: React.FC<Props> = (props): JSX.Element => {
         align-items: center;
     `;
 
+
     return (
         <Goal>
             <Pie percentage={props.score} colour="#FF0000"/>
         </Goal>
     );
 };
+
 
 export default GoalIndicator;
