@@ -2,11 +2,20 @@ import styled from "styled-components";
 import { RadarChart, Radar, PolarGrid, PolarAngleAxis } from 'recharts';
 import { Performance } from "../../types";
 
+
 interface Props {
     performances: Array<Performance>,
 };
 
+/**
+ * @description Component that displays a radar chart of user performances in each sport category
+ */
+
 const PerformanceIndicator: React.FC<Props> = (props): JSX.Element => {
+
+    /**
+     * @description Style section for the radar chart container
+     */
 
     const Performances = styled.div `
         background: #000000;
@@ -19,6 +28,7 @@ const PerformanceIndicator: React.FC<Props> = (props): JSX.Element => {
         align-items: center;
     `;
 
+
     return(
         <Performances>
             <RadarChart outerRadius={75} width={240} height={240} data={props.performances}>
@@ -29,5 +39,6 @@ const PerformanceIndicator: React.FC<Props> = (props): JSX.Element => {
         </Performances>
     );
 };
+
 
 export default PerformanceIndicator;
