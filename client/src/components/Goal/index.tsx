@@ -21,7 +21,7 @@ const GoalIndicator: React.FC<Props> = (props): JSX.Element => {
         background: transparent;
         box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
         border-radius: 5px;
-        width: 250px;
+        width: 30%;
         height: 250px;
         display: flex;
         justify-content: center;

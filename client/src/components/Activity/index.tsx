@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Bar, Legend } from 'recharts';
+import { BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Bar, Legend, ResponsiveContainer } from 'recharts';
 import { SessionsCaloriesPerDay } from '../../types';
 
 
@@ -142,16 +142,18 @@ const Activity: React.FC<Props> = (props): JSX.Element => {
 
     return(
         <ActivityChartContainer>
-            <BarChart width={835} height={320} data={props.activities}>
-                <CartesianGrid strokeDasharray="3 3" vertical={false}/>
-                <XAxis dataKey="day" axisLine={false} tickLine={false} tickMargin={15}/>
-                <YAxis yAxisId="right" dataKey="kilogram" orientation="right" axisLine={false} tickLine={false} type="number" domain={['dataMin - 1', 'dataMax']}/>
-                <YAxis yAxisId="left" hide={true}/>
-                <Tooltip content={<CustomTooltip/>}/>
-                <Legend verticalAlign="top" align='right'content={() => legend()}/>
-                <Bar yAxisId="right" dataKey="kilogram" fill="#000000" radius={[15, 15, 0, 0]} barSize={10}/>
-                <Bar yAxisId="left" dataKey="calories" fill="#FF0000" radius={[15, 15, 0, 0]} barSize={10}/>
-            </BarChart>
+            <ResponsiveContainer width="100%" height={320}>
+                <BarChart data={props.activities}>
+                    <CartesianGrid strokeDasharray="3 3" vertical={false}/>
+                    <XAxis dataKey="day" axisLine={false} tickLine={false} tickMargin={15}/>
+                    <YAxis yAxisId="right" dataKey="kilogram" orientation="right" axisLine={false} tickLine={false} type="number" domain={['dataMin - 1', 'dataMax']}/>
+                    <YAxis yAxisId="left" hide={true}/>
+                    <Tooltip content={<CustomTooltip/>}/>
+                    <Legend verticalAlign="top" align='right'content={() => legend()}/>
+                    <Bar yAxisId="right" dataKey="kilogram" fill="#000000" radius={[15, 15, 0, 0]} barSize={10}/>
+                    <Bar yAxisId="left" dataKey="calories" fill="#FF0000" radius={[15, 15, 0, 0]} barSize={10}/>
+                </BarChart>
+            </ResponsiveContainer>
         </ActivityChartContainer>
     );
 };

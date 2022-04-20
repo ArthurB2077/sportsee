@@ -16,7 +16,7 @@ const Info: React.FC<Props> = (props): JSX.Element => {
      */
 
     const InfoTitle = styled.h1 `
-        margin-top: 0;
+        margin-top: 60px;
         font-family: 'Roboto';
         font-style: normal;
         font-weight: 500;

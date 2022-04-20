@@ -27,7 +27,7 @@ const NutrientConsumption: React.FC<Props> = (props): JSX.Element => {
         border-radius: 5px;
         width: 260px;
         height: 125px;
-        margin-bottom: 28px;
+        margin-bottom: 50px;
         img {
             width: 60px;
             height: 60px;

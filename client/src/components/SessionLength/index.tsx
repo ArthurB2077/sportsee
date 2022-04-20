@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { LineChart, Line, XAxis, Tooltip } from 'recharts';
+import { LineChart, Line, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { SessionsLength } from '../../types';
 
 
@@ -22,7 +22,7 @@ const SessionLengthIndicator: React.FC<Props> = (props): JSX.Element => {
         background: #FF0000;
         box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
         border-radius: 5px;
-        width: 250px;
+        width: 30%;
         height: 250px;
         display: flex;
         flex-direction: column;
@@ -90,19 +90,21 @@ const SessionLengthIndicator: React.FC<Props> = (props): JSX.Element => {
             <SessionsLengthTitle>
                 <h5>Durée moyenne des sessions</h5>
             </SessionsLengthTitle>
-            <LineChart width={250} height={150} data={props.sessionsLength}>
-                <XAxis dataKey="day" axisLine={false} tickLine={false} tickMargin={40} height={55} padding={{ left: 15, right: 15 }} style={{fill: 'rgba(255, 255, 255, 0.5)'}}/>
-                <Tooltip content={CustomTooltipLine}/>
-                <svg width="0" height="0">
-                    <defs>
-                        <linearGradient id="cl1" gradientUnits="objectBoundingBox" x1="0" y1="0" x2="1" y2="1">
-                            <stop stopColor="rgba(255, 255, 255, 0.4)"/>
-                            <stop offset="75%" stopColor="rgba(255, 255, 255, 1)"/>
-                        </linearGradient>
-                    </defs>
-                </svg>
-                <Line dot={false} type="natural" dataKey="sessionLength" stroke="url(#cl1)" strokeWidth={2}/>
-            </LineChart>
+            <ResponsiveContainer width="100%" height={150}>
+                <LineChart data={props.sessionsLength}>
+                    <XAxis dataKey="day" axisLine={false} tickLine={false} tickMargin={40} height={55} padding={{ left: 15, right: 15 }} style={{fill: 'rgba(255, 255, 255, 0.5)'}}/>
+                    <Tooltip content={CustomTooltipLine}/>
+                    <svg width="0" height="0">
+                        <defs>
+                            <linearGradient id="cl1" gradientUnits="objectBoundingBox" x1="0" y1="0" x2="1" y2="1">
+                                <stop stopColor="rgba(255, 255, 255, 0.4)"/>
+                                <stop offset="75%" stopColor="rgba(255, 255, 255, 1)"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <Line dot={false} type="natural" dataKey="sessionLength" stroke="url(#cl1)" strokeWidth={2}/>
+                </LineChart>
+            </ResponsiveContainer>
         </SessionsLength>
     );
 };

@@ -27,9 +27,10 @@ const Dashboard: React.FC = (): JSX.Element => {
     const DashboardContainer = styled.div `
         font-family: 'Roboto', sans-serif;
         position: absolute;
-        left: 100px;
+        left: 10vw;
+        right: 10vw;
         top: 92px;
-        width: calc(90vw - 100px);
+        width: 80vw;
         height: calc(100vh - 92px);
         display: flex;
         flex-direction: column;
@@ -47,17 +48,18 @@ const Dashboard: React.FC = (): JSX.Element => {
     `;
 
     const DashboardContentLeft = styled.div `
-        margin-right: 10%;
+        margin-right: 2.5%;
+        width: 50vw;
     `;
 
     const DashboardContentRigth = styled.div `
-        margin-left: 5%;
+        margin-left: 2.5%;
     `;
 
     const IndicatorsPanelContainer = styled.div `
         display: flex;
         justify-content: space-between;
-        width: 925px;
+        margin-top: 50px;
     `;
 
 
