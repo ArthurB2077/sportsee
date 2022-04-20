@@ -59,9 +59,9 @@ const NutrientConsumption: React.FC<Props> = (props): JSX.Element => {
 
     return (
         <NutrientConsumptionContainer>
-            {props.nutrients && props.nutrients.map((item: NutrientConsumptionItem) => {
+            {props.nutrients && props.nutrients.map((item: NutrientConsumptionItem, index: number) => {
                 return(
-                    <NutrientConsumptionItem>
+                    <NutrientConsumptionItem key={`${item.name}-${index}`}>
                         <img src={item.image} alt={item.name}/>
                         <NutrientConsumptionItemText>
                             <h5>{item.value}{item.name === 'Calories' ? 'kCal': 'g'}</h5>
