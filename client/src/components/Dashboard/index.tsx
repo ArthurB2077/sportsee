@@ -27,10 +27,10 @@ const Dashboard: React.FC = (): JSX.Element => {
     const DashboardContainer = styled.div `
         font-family: 'Roboto', sans-serif;
         position: absolute;
-        left: 10vw;
-        right: 10vw;
+        left: 2.5vw;
+        right: 2.5vw;
         top: 92px;
-        width: 80vw;
+        width: 95vw;
         height: calc(100vh - 92px);
         display: flex;
         flex-direction: column;
