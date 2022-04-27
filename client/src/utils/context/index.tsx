@@ -2,6 +2,16 @@ import React, { createContext } from 'react';
 import { useFetch } from '../hooks/useFetch';
 import { DataProvided } from './../../types';
 
+
+interface Props {
+    children : React.ReactNode
+};
+
+
+/**
+ * @description Default state for the DataProvider context
+ */
+
 const defaultState : DataProvided = {
     userInfos: { isLoading: true, data: null, error: false },
     userActivity: { isLoading: true, data: null, error: false },
@@ -9,11 +19,17 @@ const defaultState : DataProvided = {
     userPerformances: { isLoading: true, data: null, error: false },
 }
 
+
+/**
+ * @description The data provider context object
+ */
+
 export const DataContext = createContext<DataProvided>(defaultState);
 
-interface Props {
-    children : React.ReactNode
-};
+
+/**
+ * @description The DataProvider context
+ */
 
 export const DataProvider = ({ children }: Props ): JSX.Element => {
     const userId : number = 12;

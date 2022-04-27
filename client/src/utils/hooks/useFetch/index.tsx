@@ -1,6 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Infos, Activity, AverageSessions, Performances, FetchResponse } from './../../../types';
 
+
+/**
+ * @description Hook to fetch data from the API
+ */
+
 export const useFetch = (url : string): FetchResponse => {
     const [data, setData] = useState<Infos | Activity | AverageSessions | Performances | null>(null);
     const [isLoading, setLoading] = useState<boolean>(true);
