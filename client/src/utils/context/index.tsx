@@ -1,6 +1,7 @@
 import React, { createContext } from 'react';
-import { useFetch } from '../hooks/useFetch';
+import { useFetch, useFetchMockedData } from '../hooks/useFetch';
 import { DataProvided } from './../../types';
+import { useParams, useLocation } from 'react-router-dom'
 
 
 interface Props {
@@ -32,7 +33,9 @@ export const DataContext = createContext<DataProvided>(defaultState);
  */
 
 export const DataProvider = ({ children }: Props ): JSX.Element => {
-    const userId : number = 12;
+    const userId : string | undefined = useParams().userId;
+    const searchParams : string | undefined = useLocation().search;
+
     const dataProvided : DataProvided  = {
         userInfos: useFetch(`http://localhost:3000/user/${userId}`),
         userActivity: useFetch(`http://localhost:3000/user/${userId}/activity`),
@@ -40,8 +43,15 @@ export const DataProvider = ({ children }: Props ): JSX.Element => {
         userPerformances: useFetch(`http://localhost:3000/user/${userId}/performance`),
     };
 
+    const mockedDataProvided : DataProvided  = {
+        userInfos: useFetchMockedData('/mocks/userMain.json', userId),
+        userActivity: useFetchMockedData('/mocks/userActivity.json', userId),
+        userSessions: useFetchMockedData('/mocks/userAverageSessions.json', userId),
+        userPerformances: useFetchMockedData('/mocks/userPerformances.json', userId),
+    }
+
     return(
-        <DataContext.Provider value={dataProvided}>
+        <DataContext.Provider value={searchParams === '?mockedData' ? mockedDataProvided : dataProvided}>
             {children}
         </DataContext.Provider>
     );

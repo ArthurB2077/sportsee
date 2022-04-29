@@ -9,3 +9,9 @@ In the /api directory :
 In the /client directory : 
 - use `yarn install` to install dependencies
 - use `yarn start` to start the developpement server in the browser
+
+## Fetch mocked data 
+Set url to : http://localhost:3001/user/12?mockedData
+
+## Fetch api data 
+Set url to : http://localhost:3001/user/12
